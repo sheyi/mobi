@@ -627,6 +627,7 @@ export class MOBI extends PDB {
             description: unescapeHTML(exth?.description),
             subject: exth?.subject?.map(unescapeHTML),
             rights: unescapeHTML(exth?.rights),
+            contributor: exth?.contributor,
         }
     }
     async getCover() {
@@ -720,7 +721,7 @@ class MOBI6 {
                     .reduce((arr, a) => {
                         const indent = getIndent(a)
                         const item = {
-                            label: a.innerText?.trim(),
+                            label: a.innerText?.trim() ?? '',
                             href: `filepos:${a.getAttribute('filepos')}`,
                         }
                         const level = indent > lastIndent ? lastLevel + 1
